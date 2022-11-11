@@ -8,6 +8,9 @@
 ["1234","1567","-2","computer science"] -> ["-2"]
 ["Russia","Denmark","Kazan"] -> []
 */
+
+/// Метод void userAnotherTry позволяет пользователю использовать программу второй и последующий раз по желанию пользователя без необходимости запускать ее снова
+
 void userAnotherTry()
 {
     Console.WriteLine("Вы хотите продолжить работу с программой? Да - Y, Нет - N");
@@ -27,13 +30,14 @@ void userAnotherTry()
     }
 }
 
+/// Метод void userData - это основной код расчетов программы
 
 void userData()
 {
     int N = 1;
     int total = 0;
     int count = 0;
-    string?[] userArray = new string[1000];
+    string?[] userArray = new string[1000]; /// Создание нового массива, в котором будут содержаться все строки пользователя. Лимит - 1000 можно увеличить путем увеличение цифры здесь
     Console.WriteLine("Вводите значения через Enter. Оставьте поле пустым и нажмите Enter - это остановит ввод значений.");
     for (int i = 0; i < N; i++)
     {
@@ -47,14 +51,15 @@ void userData()
         string? userArrString = Convert.ToString(userString);
         userArray[i] = userArrString;
     }
-    if (userArray[0] == null)
+    if (userArray[0] == null) /// Это случай, когда пользователь в первом же значении матрицы ничего не вводит. Без этого программа выводит ошибку.
     {
-        Console.WriteLine("Первое значение не может быть пустым. Введите верное значение строки.");
-        userData();
+        Console.WriteLine("Спасибо!");
+        Console.WriteLine("Вы ничего не ввели, поэтому ответа нет.");
+        userAnotherTry();
         return;
     }
     Console.WriteLine("Спасибо!");
-    Console.Write("Вы ввели значения -> [");
+    Console.Write("Вы ввели значения -> ["); /// Далее идет выведение на экран всех значений пользователя
     for (int index = 0; index < N - 2; index++)
     {
         if (userArray[index]?.Length <= 3)
@@ -68,7 +73,7 @@ void userData()
         total++;
     }
     Console.WriteLine($"\"{userArray[N - 2]}\"]");
-    string?[] solveArray = new string[total];
+    string?[] solveArray = new string[total]; /// Создание нового массива, в котором будет содержаться ответ
     for (int index = 0; index < N - 1; index++)
     {
         if (userArray[index]?.Length <= 3)
@@ -77,7 +82,7 @@ void userData()
             count++;
         }
     }
-    Console.Write("Ответ -> [");
+    Console.Write("Ответ -> ["); /// С этого момента начинается вывод на экран ответа для пользователя.
     if (count > 0)
     {
         Console.Write($"\"{solveArray[0]}\"");
