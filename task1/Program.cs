@@ -39,17 +39,16 @@ void userData()
     int count = 0;
     string?[] userArray = new string[1000]; /// Создание нового массива, в котором будут содержаться все строки пользователя. Лимит - 1000 можно увеличить путем увеличение цифры здесь
     Console.WriteLine("Вводите значения через Enter. Оставьте поле пустым и нажмите Enter - это остановит ввод значений.");
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < 1000; i++)
     {
         Console.WriteLine($"Введите строку №{N}:");
-        string? userString = Console.ReadLine();
+        string? userString = Convert.ToString(Console.ReadLine());
         if (userString == "")
         {
             break;
         }
         N++;
-        string? userArrString = Convert.ToString(userString);
-        userArray[i] = userArrString;
+        userArray[i] = userString;
     }
     if (userArray[0] == null) /// Это случай, когда пользователь в первом же значении матрицы ничего не вводит. Без этого программа выводит ошибку.
     {
@@ -62,11 +61,11 @@ void userData()
     Console.Write("Вы ввели значения -> ["); /// Далее идет выведение на экран всех значений пользователя
     for (int index = 0; index < N - 2; index++)
     {
+        Console.Write($"\"{userArray[index]}\", ");
         if (userArray[index]?.Length <= 3)
         {
             total++;
         }
-        Console.Write($"\"{userArray[index]}\", ");
     }
     if (userArray[N - 2]?.Length <= 3)
     {
